@@ -1,0 +1,67 @@
+package unionfind;
+
+import java.util.Scanner;
+
+public class UnionFind {
+
+    public static void main(String[] args) {
+       Scanner s =new Scanner(System.in);
+       int n=s.nextInt();
+       UF u=new UF(n);
+       int c=0;
+       while(n!=c)
+       {
+           int p=s.nextInt();
+           int q=s.nextInt();
+           if(!u.connected(p,q))
+           {
+               u.union(p,q);
+               System.out.println("Successfully Connected!");
+           }
+           else
+           {
+               System.out.println("U dumb aSS! They are alreay connected!");
+           }
+       }
+    }
+    
+}
+__________________________________________________________________________________________________________________________________
+
+package unionfind;
+
+public class UF 
+{
+    public int[] arr;
+    public UF(int n)
+    {
+        arr=new int[n];
+        for(int i=0;i<n;i++)
+        {
+            arr[i]=i;
+        }
+        
+    }
+    public boolean connected(int p,int q)
+    {
+        if(arr[p]==arr[q])
+        {
+            return true;
+        }
+        else
+            return false;
+    }
+   public void union(int p,int q)
+   {
+       int t=arr[p];
+       int e=arr[q];
+       for(int i=0;i<arr.length;i++)
+       {
+           if(arr[i]==t)
+           {
+               arr[i]=e;
+           }
+       }
+       
+   }
+}
