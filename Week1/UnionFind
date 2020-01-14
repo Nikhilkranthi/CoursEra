@@ -1,0 +1,70 @@
+
+package unionfind;
+
+import java.util.Scanner;
+
+public class UnionFind 
+{   
+    public static void main(String[] args) 
+    {
+      Scanner s=new Scanner(System.in);
+      int n=s.nextInt();
+      UFF uf=new UFF(n);
+      int c=0;
+      while(n!=c)
+      {
+          int p=s.nextInt();
+          int q=s.nextInt();
+          if(!uf.connected(p, q))
+          {
+              uf.union(p, q);
+              System.out.println("Yeah! Successfully connected!!!");
+              
+          }
+          else
+          {
+              System.out.print("Phew!!!");
+          }
+          c++;
+      }
+    }
+    
+}
+_________________________________________________________________________________________________________________________________
+
+
+package unionfind;
+
+class UFF {
+    public int[] arr;
+   public UFF(int n) 
+    {
+       arr=new int[n];
+       for(int i=0;i<n;i++)
+       {
+           arr[i]=i;
+       }
+    }
+    public int root(int p) 
+    {
+       while(p!=arr[p])
+       {
+           p=arr[p];
+       }
+       return p;
+    }
+    boolean connected(int p, int q) 
+    {
+      return root(p)==root(q);
+    }
+    public void union(int p, int q) 
+    {
+       int i=root(p);
+       int j=root(q);
+       arr[i]=j;
+       
+    }
+    
+}
+
+  
